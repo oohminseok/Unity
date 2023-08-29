@@ -36,4 +36,8 @@ public class Player : MonoBehaviour
             animator.SetBool("isRunning",false);
         }
     }
+     public void GetPoop()
+    {
+        GetComponent<SpriteRenderer>().color=new Color(0.75f,0.45f,0f);
+    }
 }
