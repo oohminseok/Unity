@@ -25,11 +25,22 @@ public class Poop : MonoBehaviour
     {
         if(other.gameObject.tag=="Ground")
         {
-           Destroy(gameObject);
+            GameManager.instance.AddScore();
         }
         else if(other.gameObject.tag=="Player")
         {
-            Destroy(gameObject);
+            GameManager.instance.SetGameOver();
+            Player player=other.gameObject.GetComponent<Player>();
+            player.GetPoop();
         }
+        else if(other.gameObject.tag=="Poop")
+        {
+            return;
+        }
+           Instantiate(particle,transform.position,Quaternion.identity);
+           GetComponent<AudioSource>().Play();
+           GetComponent<Renderer>().enabled=false;
+           GetComponent<BoxCollider2D>().enabled=false;
+           Destroy(gameObject,1f);
     }
 }
