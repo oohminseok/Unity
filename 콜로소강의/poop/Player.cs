@@ -17,26 +17,34 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.LeftArrow))
+        if(GameManager.instance.isGameOver==false)
         {
-            Vector3 currentScale=transform.localScale;
-            transform.localScale=new Vector3(-Mathf.Abs(currentScale.x),currentScale.y,currentScale.z);
-            transform.position+=Vector3.left*moveSpeed*Time.deltaTime;
-            animator.SetBool("isRunning",true);
-        }
-        else if(Input.GetKey(KeyCode.RightArrow))
-        {
-            Vector3 currentScale=transform.localScale;
-            transform.localScale=new Vector3(Mathf.Abs(currentScale.x),currentScale.y,currentScale.z);
-            transform.position+=Vector3.right*moveSpeed*Time.deltaTime;
-            animator.SetBool("isRunning",true);
+              if(Input.GetKey(KeyCode.LeftArrow))
+              {
+                 Vector3 currentScale=transform.localScale;
+                 transform.localScale=new Vector3(-Mathf.Abs(currentScale.x),currentScale.y,currentScale.z);
+                 transform.position+=Vector3.left*moveSpeed*Time.deltaTime;
+                 animator.SetBool("isRunning",true);
+             }
+             else if(Input.GetKey(KeyCode.RightArrow))
+             {
+                Vector3 currentScale=transform.localScale;
+                transform.localScale=new Vector3(Mathf.Abs(currentScale.x),currentScale.y,currentScale.z);
+                transform.position+=Vector3.right*moveSpeed*Time.deltaTime;
+                animator.SetBool("isRunning",true);
+             }
+             else
+             {
+                animator.SetBool("isRunning",false);
+             }
         }
         else
         {
             animator.SetBool("isRunning",false);
         }
     }
-     public void GetPoop()
+    
+    public void GetPoop()
     {
         GetComponent<SpriteRenderer>().color=new Color(0.75f,0.45f,0f);
     }
