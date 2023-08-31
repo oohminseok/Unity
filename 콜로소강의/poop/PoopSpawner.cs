@@ -47,4 +47,13 @@ public class PoopSpawner : MonoBehaviour
         int index=Random.Range(0,poops.Length);
         Instantiate(poops[index],position,Quaternion.identity);
     }
+    
+    public void DecreasePoopInterval()
+    {
+        poopInterval-=0.05f;
+        if(poopInterval<0.1f)
+        {
+            poopInterval=0.1f;
+        }
+    }
 }
